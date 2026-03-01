@@ -4,21 +4,32 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc -b && vite build",
-        "lint": "eslint . --fix",
-        "preview": "vite preview"
+        "dev": "concurrently -k -n server,vite -c auto \"pnpm dev:server\" \"pnpm dev:vite\"",
+        "dev:vite": "vite",
+        "dev:server": "tsx --tsconfig server/tsconfig.json --watch server/app.ts",
+        "build:server": "tsc -p server/tsconfig.json",
+        "build:client": "vite build",
+        "build": "pnpm build:server && pnpm build:client",
+        "start:server": "node server/dist/app.js",
+        "preview": "vite preview",
+        "lint": "eslint . --fix"
     },
     "dependencies": {
+        "dotenv": "^17.3.1",
+        "express": "^5.2.1",
+        "helmet": "^8.1.0",
         "react": "^19.2.0",
-        "react-dom": "^19.2.0"
+        "react-dom": "^19.2.0",
+        "tsx": "^4.21.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.1",
+        "@types/express": "^5.0.6",
         "@types/node": "^24.10.1",
         "@types/react": "^19.2.7",
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react": "^5.1.1",
+        "concurrently": "^9.2.1",
         "eslint": "^9.39.1",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-prettier": "^5.5.5",

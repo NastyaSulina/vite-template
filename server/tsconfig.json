@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "types": ["node"],
+        "strict": true,
+
+        "noEmit": false,
+        "outDir": "../server/dist",
+        "rootDir": ".",
+
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["./**/*.ts"]
+}
