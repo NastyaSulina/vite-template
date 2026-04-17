@@ -1,3 +1,13 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Linting
+
+ESLint, Prettier, and Stylelint. Run automatically before each commit via `lint-staged`.
+
+Stylelint also enforces CSS property order via `stylelint-order`.
+
+```bash
+pnpm lint
+pnpm stylelint
+pnpm prettier
+```
