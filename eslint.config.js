@@ -9,10 +9,12 @@ import tseslint from 'typescript-eslint'
 import importPlugin from 'eslint-plugin-import'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
+const ROOT = process.cwd()
+
 export default defineConfig([
     globalIgnores(['dist', 'node_modules']),
     {
-        files: ['src/**/*.{ts,tsx}'],
+        files: ['src/**/*.{ts,tsx}', 'shared/**/*.{ts,tsx}'],
         extends: [
             js.configs.recommended,
             tseslint.configs.recommended,
@@ -25,11 +27,10 @@ export default defineConfig([
             prettier,
         ],
         languageOptions: {
-            ecmaVersion: 2020,
             globals: globals.browser,
             parserOptions: {
-                project: ['./tsconfig.node.json', './tsconfig.app.json'],
-                tsconfigRootDir: import.meta.dirname,
+                project: ['./tsconfig.app.json', './tsconfig.node.json'],
+                tsconfigRootDir: ROOT,
             },
         },
         settings: {
